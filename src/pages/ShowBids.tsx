@@ -83,7 +83,7 @@ const ShowBids = () => {
           <Form.Select aria-label="Default select example" value={val} onChange={(e) => setVal(e.target.value)}>
               <option value="">Select</option>
               {
-                  products.map( product => <option value={product}>{product}</option>)
+                  products.map( product => <option value={product} key={product}>{product}</option>)
               }
           </Form.Select>
         </Col>

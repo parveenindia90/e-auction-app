@@ -20,7 +20,7 @@ const BidList : React.FC<IProps> = ({bidList}) => {
             <tbody>
             { bidList.length === 0 ? (<tr><td colSpan={4}>No Bids found</td></tr>) : bidList.map(bid => {
                 return (
-                <tr>
+                <tr key={bid.email}>
                 <td>{numberFormat(bid.bidAmount)}</td>
                 <td>{bid.firstName} {bid.lastName}</td>
                 <td>{bid.email}</td>
