@@ -29,16 +29,18 @@ export const numberFormat = (value: number) =>
 
 const ShowBids = () => {
 
+  const productInit = {
+    "shortDesc":"",
+    "detailsDesc":"",
+    "category":"",
+    "startingPrice": 0,
+    "bidEndDate": ""
+  };
+
   const [products, setProducts] = useState([]);
 
   const [productInfo, setProductInfo] = useState<IProductInfo["productInfo"]>(
-     {
-        "shortDesc":"",
-        "detailsDesc":"",
-        "category":"",
-        "startingPrice": 0,
-        "bidEndDate": ""
-      }
+     productInit
   );
 
   const [bidList, setBidList] = useState<IProductInfo["bidList"]>([]);
@@ -57,6 +59,8 @@ const ShowBids = () => {
   const handleClick = async () => {
       if(val === "")
       {
+        setProductInfo(productInit);
+        setBidList([]);
         setError("Please select valid product");
       }else{
         const response = await fetch(`${process.env.REACT_APP_API_ROOT_URL}/e-auction/api/v1/seller/show-bids/${val}`);
