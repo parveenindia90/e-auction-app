@@ -44,3 +44,28 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+react app deployment steps for ec2
+
+1. create an ec2 instance, also create keyvalue pair for ec2 instance ssh login
+2. create security group and attach to ec2 instance by allowing SSH-22, HTTP-80, Custom TCP-3000
+
+Login in ec2 instance using puuty
+
+1. provide super user permissioms -> sudo su
+2. create a folder -> mkdir workspace
+3. create IAM to access s3 bucker for ec2 instance
+4. copy react artifacts to s3 bucket
+5  copy s3 to ec2
+	-> aws s3 sync s3://react-artifacts .
+4. To install node, follow below steps
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+   To activate nvm
+	. ~/.nvm/nvm.sh
+   nvm install --lts
+5. npm install
+6. install serve and pm2 GLOBALLY
+	npm install -g serve
+	npm install -g pm2
+7 pm2 serve build 80 --spa
+
